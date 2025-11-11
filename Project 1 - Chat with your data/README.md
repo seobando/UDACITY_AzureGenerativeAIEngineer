@@ -1,6 +1,8 @@
 # Project 1: Chat with your data
 
-This project is about showcasing the use of Azure tools to implement the RAG pattern. The files used come from SEC about PALANTIR 10Q for 2024 and 2025.
+This project is about showcasing the use of Azure tools to implement the RAG pattern. The files used come from SEC about PALANTIR 10Q for 2024 and 2025 as follows:
+
+![resource_group](/Project%201%20-%20Chat%20with%20your%20data/images/storage.png)
 
 # Azure Services Deployment
 
@@ -12,11 +14,7 @@ Creation of the Azure AI Search service used in the chatbot application:
 
 ![ai_search](/Project%201%20-%20Chat%20with%20your%20data/images/ai_search.png)
 
-OpenAI Service and Model Deployment:
-
-![model_deployment](/Project%201%20-%20Chat%20with%20your%20data/images/model_deployments.png)
-
-Deployment of both the GPT-4 model and the ADA model for embeddings in Azure OpenAI Studio:
+OpenAI Service and Model Deployment (Deployment of both the GPT-4 model and the ADA model for embeddings in Azure OpenAI Studio) :
 
 ![model_deployment](/Project%201%20-%20Chat%20with%20your%20data/images/model_deployments.png)
 
