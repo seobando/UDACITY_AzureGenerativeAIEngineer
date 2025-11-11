@@ -2,17 +2,29 @@
 
 Azure AI Search Creation
 
+![resource_group](/Project%201%20-%20Chat%20with%20your%20data/images/resource_group.png)
+
 Creation of the Azure AI Search service used in the chatbot application
+
+![ai_search](/Project%201%20-%20Chat%20with%20your%20data/images/ai_search.png)
 
 OpenAI Service and Model Deployment
 
+![model_deployment](/Project%201%20-%20Chat%20with%20your%20data/images/model_deployment.png)
+
 Deployment of both the GPT-4 model and the ADA model for embeddings in Azure OpenAI Studio
+
+![model_deployment](/Project%201%20-%20Chat%20with%20your%20data/images/model_deployment.png)
 
 # Retrieval-Augmented Generation (RAG) Implementation
 
 RAG Setup and Data Indexing
 
+![rag_configuration](/Project%201%20-%20Chat%20with%20your%20data/images/rag_configuration.png)
+
 Configures RAG in Azure OpenAI Studio, linking the deployed GPT-4 model to Azure Blob Storage and AI Search, with indexing completion
+
+![link_index](/Project%201%20-%20Chat%20with%20your%20data/images/link_index.png)
 
 # Prompt Development and Testing
 
@@ -40,9 +52,7 @@ You are a highly skilled and meticulous **Senior Financial Data Analyst Chatbot*
 **RESPONSE:**
 ```
 
-Submission of Prompts File
-
-Submits a file containing at least 5 developed prompts that were tested.
+# Submission of Prompts File
 
 ## Prompt 1: 
 
@@ -50,16 +60,16 @@ Submits a file containing at least 5 developed prompts that were tested.
 
 # Prompt 2:
 
-
+![prompt_2](/Project%201%20-%20Chat%20with%20your%20data/images/response_2.png)
 
 # Prompt 3:
 
-
+![prompt_3](/Project%201%20-%20Chat%20with%20your%20data/images/response_3.png)
 
 # Prompt 4:
 
-
+![prompt_4](/Project%201%20-%20Chat%20with%20your%20data/images/response_4.png)
 
 # Prompt 5:
 
-
+![prompt_5](/Project%201%20-%20Chat%20with%20your%20data/images/response_5.png)
