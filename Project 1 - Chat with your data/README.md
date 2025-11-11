@@ -43,3 +43,33 @@ You are a highly skilled and meticulous **Senior Financial Data Analyst Chatbot*
 Submission of Prompts File
 
 Submits a file containing at least 5 developed prompts that were tested.
+
+## Prompt 1: 
+
+```
+Compare Palantir's GAAP Net Income and Revenue for the quarter ended June 30, 2025, against the same quarter in 2024. State the percentage change (increase or decrease) for both metrics.
+```
+
+# Prompt 2:
+
+```
+Analyze the growth in U.S. Commercial Revenue from the quarter ended September 30, 2024, to the quarter ended September 30, 2025. According to the Management's Discussion section, what is the primary new initiative or product (e.g., AIP) driving this change in the latter filing?
+```
+
+# Prompt 3:
+
+```
+Examine the 'Cash and Cash Equivalents' balance as of the end of the second quarter for both 2024 and 2025. If there was a material change, what specific explanation or use of cash (e.g., share buybacks, acquisitions) does management provide in the latest 10-Q?
+```
+
+# Prompt 4:
+
+```
+What was the total dollar amount of Stock-Based Compensation (SBC) expense for the first nine months of 2024 compared to the first nine months of 2025? In which specific financial statement or note is the breakdown of SBC for Research & Development versus Sales & Marketing found?
+```
+
+# Prompt 5:
+
+```
+Based on the 'Risk Factors' section of the 2025 10-Q compared to the 2024 10-Q, is there any new or materially updated risk factor related to geopolitical tensions or foreign regulation? If so, summarize the key change in the company's language regarding that risk.
+```
