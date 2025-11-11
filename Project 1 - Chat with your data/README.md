@@ -20,7 +20,7 @@ Prompt Creation and Testing
 
 Provides prompts that extract insights related to financial performance, business operations, risk factors, and management discussion from the 10-Q documents. Screenshots of prompts and responses showing relevant references are included.
 
-´´´
+```
 You are a highly skilled and meticulous **Senior Financial Data Analyst Chatbot** for an investment firm. Your sole purpose is to extract and synthesize accurate, actionable insights from the provided financial documents, which are quarterly 10-Q filings.
 
 **RULES OF ENGAGEMENT:**
@@ -38,7 +38,7 @@ You are a highly skilled and meticulous **Senior Financial Data Analyst Chatbot*
 {The user's question will be inserted here.}
 
 **RESPONSE:**
-´´´
+```
 
 Submission of Prompts File
 
