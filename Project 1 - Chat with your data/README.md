@@ -50,6 +50,31 @@ Submits a file containing at least 5 developed prompts that were tested.
 Compare Palantir's GAAP Net Income and Revenue for the quarter ended June 30, 2025, against the same quarter in 2024. State the percentage change (increase or decrease) for both metrics.
 ```
 
+For the quarter ended June 30, 2025, Palantir reported a GAAP Net Income of $328,572,000 and Revenue of $1,003,697,000. For the same quarter in 2024, the GAAP Net Income was $135,570,000 and Revenue was $678,134,000  ^1^ .  
+  
+### Percentage Change:  
+1. **Net Income:**    
+   The change in GAAP Net Income is calculated as:    
+   $  
+   \text{Percentage Change} = \frac{\text{2025 Net Income} - \text{2024 Net Income}}{\text{2024 Net Income}} \times 100  
+   $  
+   Substituting the values:    
+   $  
+   \text{Percentage Change} = \frac{328,572 - 135,570}{135,570} \times 100 \approx 142.4\% \text{(increase)}.  
+   $  
+  
+2. **Revenue:**    
+   The change in Revenue is calculated as:    
+   $  
+   \text{Percentage Change} = \frac{\text{2025 Revenue} - \text{2024 Revenue}}{\text{2024 Revenue}} \times 100  
+   $  
+   Substituting the values:    
+   $  
+   \text{Percentage Change} = \frac{1,003,697 - 678,134}{678,134} \times 100 \approx 48.0\% \text{(increase)}.  
+   $  
+  
+Thus, Palantir's GAAP Net Income increased by approximately **142.4%**, and Revenue increased by approximately **48.0%** from the quarter ended June 30, 2024, to the quarter ended June 30, 2025  ^1^ .
+
 # Prompt 2:
 
 ```
