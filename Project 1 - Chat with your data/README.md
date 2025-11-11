@@ -10,11 +10,11 @@ Creation of the Azure AI Search service used in the chatbot application
 
 OpenAI Service and Model Deployment
 
-![model_deployment](/Project%201%20-%20Chat%20with%20your%20data/images/model_deployment.png)
+![model_deployment](/Project%201%20-%20Chat%20with%20your%20data/images/model_deployments.png)
 
 Deployment of both the GPT-4 model and the ADA model for embeddings in Azure OpenAI Studio
 
-![model_deployment](/Project%201%20-%20Chat%20with%20your%20data/images/model_deployment.png)
+![model_deployment](/Project%201%20-%20Chat%20with%20your%20data/images/model_deployments.png)
 
 # Retrieval-Augmented Generation (RAG) Implementation
 
