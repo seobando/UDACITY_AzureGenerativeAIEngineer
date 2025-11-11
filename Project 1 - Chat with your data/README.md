@@ -46,7 +46,7 @@ Submits a file containing at least 5 developed prompts that were tested.
 
 ## Prompt 1: 
 
-![prompt_1](Project 1 - Chat with your data/images/response_1.png)
+![prompt_1](Project%201%20-%20Chat%20with%20your%20data/images/response_1.png)
 
 # Prompt 2:
 
