@@ -46,55 +46,20 @@ Submits a file containing at least 5 developed prompts that were tested.
 
 ## Prompt 1: 
 
-```
-Compare Palantir's GAAP Net Income and Revenue for the quarter ended June 30, 2025, against the same quarter in 2024. State the percentage change (increase or decrease) for both metrics.
-```
-
-For the quarter ended June 30, 2025, Palantir reported a GAAP Net Income of $328,572,000 and Revenue of $1,003,697,000. For the same quarter in 2024, the GAAP Net Income was $135,570,000 and Revenue was $678,134,000  ^1^ .  
-  
-### Percentage Change:  
-1. **Net Income:**    
-   The change in GAAP Net Income is calculated as:    
-   $  
-   \text{Percentage Change} = \frac{\text{2025 Net Income} - \text{2024 Net Income}}{\text{2024 Net Income}} \times 100  
-   $  
-   Substituting the values:    
-   $  
-   \text{Percentage Change} = \frac{328,572 - 135,570}{135,570} \times 100 \approx 142.4\% \text{(increase)}.  
-   $  
-  
-2. **Revenue:**    
-   The change in Revenue is calculated as:    
-   $  
-   \text{Percentage Change} = \frac{\text{2025 Revenue} - \text{2024 Revenue}}{\text{2024 Revenue}} \times 100  
-   $  
-   Substituting the values:    
-   $  
-   \text{Percentage Change} = \frac{1,003,697 - 678,134}{678,134} \times 100 \approx 48.0\% \text{(increase)}.  
-   $  
-  
-Thus, Palantir's GAAP Net Income increased by approximately **142.4%**, and Revenue increased by approximately **48.0%** from the quarter ended June 30, 2024, to the quarter ended June 30, 2025  ^1^ .
+![prompt_1](Project 1 - Chat with your data/images/response_1.png)
 
 # Prompt 2:
 
-```
-Analyze the growth in U.S. Commercial Revenue from the quarter ended September 30, 2024, to the quarter ended September 30, 2025. According to the Management's Discussion section, what is the primary new initiative or product (e.g., AIP) driving this change in the latter filing?
-```
+
 
 # Prompt 3:
 
-```
-Examine the 'Cash and Cash Equivalents' balance as of the end of the second quarter for both 2024 and 2025. If there was a material change, what specific explanation or use of cash (e.g., share buybacks, acquisitions) does management provide in the latest 10-Q?
-```
+
 
 # Prompt 4:
 
-```
-What was the total dollar amount of Stock-Based Compensation (SBC) expense for the first nine months of 2024 compared to the first nine months of 2025? In which specific financial statement or note is the breakdown of SBC for Research & Development versus Sales & Marketing found?
-```
+
 
 # Prompt 5:
 
-```
-Based on the 'Risk Factors' section of the 2025 10-Q compared to the 2024 10-Q, is there any new or materially updated risk factor related to geopolitical tensions or foreign regulation? If so, summarize the key change in the company's language regarding that risk.
-```
+
