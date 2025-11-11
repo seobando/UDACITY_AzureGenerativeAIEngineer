@@ -1,6 +1,6 @@
 # Project 1: Chat with your data
 
-This project is about showcasing the use of Azure tools to implement the RAG pattern. The files used come from SEC about PALANTIR 10Q for 2024 and 2025 as follows:
+This project is about showcasing the use of Azure tools to implement the RAG pattern, by checking the Rubric point by point. The files used come from SEC about PALANTIR 10Q for 2024 and 2025 as follows:
 
 ![resource_group](/Project%201%20-%20Chat%20with%20your%20data/images/storage.png)
 
@@ -20,17 +20,17 @@ OpenAI Service and Model Deployment (Deployment of both the GPT-4 model and the 
 
 # Retrieval-Augmented Generation (RAG) Implementation
 
-RAG Setup and Data Indexing
+RAG Setup and Data Indexing:
 
 ![rag_configuration](/Project%201%20-%20Chat%20with%20your%20data/images/rag_configuration.png)
 
-Configures RAG in Azure OpenAI Studio, linking the deployed GPT-4 model to Azure Blob Storage and AI Search, with indexing completion
+Configures RAG in Azure OpenAI Studio, linking the deployed GPT-4 model to Azure Blob Storage and AI Search, with indexing completion:
 
 ![link_index](/Project%201%20-%20Chat%20with%20your%20data/images/link_index.png)
 
 # Prompt Development and Testing
 
-Prompt Creation and Testing
+Prompt Creation and Testing:
 
 Provides prompts that extract insights related to financial performance, business operations, risk factors, and management discussion from the 10-Q documents. Screenshots of prompts and responses showing relevant references are included.
 
