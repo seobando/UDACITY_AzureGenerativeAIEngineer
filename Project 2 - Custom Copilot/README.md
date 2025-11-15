@@ -38,3 +38,7 @@ This project focuses on the **Outlander Gear Co. (Product/Retail)** track:
 4. Deployment
 
 - The copilot is deployed successfully and verified: Screenshots of the deployment confirmation with endpoint information included.
+
+# Resources
+
+[How to integrate Prompt Flow in VSC](https://www.youtube.com/watch?v=M6gXchnxHik&t=472s)

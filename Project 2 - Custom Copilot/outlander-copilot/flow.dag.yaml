@@ -9,6 +9,7 @@ inputs:
   question:
     type: string
     is_chat_input: true
+    default: Tell me a Joke
 outputs:
   answer:
     type: string
@@ -21,10 +22,10 @@ nodes:
     type: code
     path: chat.jinja2
   inputs:
-    deployment_name: gpt-35-turbo
+    deployment_name: gpt-4o
     max_tokens: 256
     temperature: 0.7
     chat_history: ${inputs.chat_history}
     question: ${inputs.question}
-  connection: stude-mi0gqu0x-eastus2_aoai
+  connection: outlander-copilot-resource_aoai
   api: chat
