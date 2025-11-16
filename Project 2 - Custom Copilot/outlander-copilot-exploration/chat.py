@@ -4,20 +4,13 @@ import os
 from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
-from typing import Optional
-
-# Try to import connection types (available in AI Foundry)
-try:
-    from promptflow.connections import AzureOpenAIConnection
-except ImportError:
-    AzureOpenAIConnection = None
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Get the directory of this file and the parent directory (outlander-copilot)
+# Get the directory of this file (where chat.jinja2 is located)
 _current_dir = Path(__file__).parent
-_flow_dir = _current_dir.parent
+_flow_dir = _current_dir
 
 # Set up Jinja2 environment to load templates from the flow directory
 _jinja_env = Environment(loader=FileSystemLoader(_flow_dir))
@@ -30,8 +23,7 @@ def chat(
     chat_history: list,
     deployment_name: str = "gpt-4o",
     max_tokens: int = 512,
-    temperature: float = 0.7,
-    connection: Optional[AzureOpenAIConnection] = None
+    temperature: float = 0.7
 ) -> str:
     """
     Generate a chat response using Azure OpenAI with retrieved context.
@@ -43,32 +35,24 @@ def chat(
         deployment_name: Azure OpenAI deployment name (default: gpt-4o)
         max_tokens: Maximum tokens in response (default: 512)
         temperature: Sampling temperature (default: 0.7)
-        connection: Optional Azure OpenAI connection from Prompt Flow (for AI Foundry)
 
     Returns:
         The assistant's response as a string
     """
-    # Try to get credentials from connection first (AI Foundry), then fall back to env vars
-    if connection:
-        api_key = connection.api_key
-        endpoint = connection.api_base
-        api_version = getattr(connection, 'api_version', '2024-02-15-preview')
-    else:
-        # Get Azure OpenAI credentials from environment variables
-        api_key = os.getenv("AZURE_OPENAI_API_KEY")
-        endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-        api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-02-15-preview")
-        api_type = os.getenv("AZURE_OPENAI_API_TYPE", "azure")
-        
-        # Optional: Allow deployment name to be overridden by env var
-        if not deployment_name:
-            deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-4o")
+    # Get Azure OpenAI credentials from environment variables
+    api_key = os.getenv("AZURE_OPENAI_API_KEY")
+    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-02-15-preview")
+
+    # Optional: Allow deployment name to be overridden by env var
+    if not deployment_name:
+        deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-4o")
 
     if not api_key or not endpoint:
         raise ValueError(
             "Azure OpenAI credentials not found. Please set "
             "AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT in your .env file "
-            "or environment variables, or provide a connection in AI Foundry."
+            "or environment variables."
         )
 
     # Clean endpoint (remove trailing slash)

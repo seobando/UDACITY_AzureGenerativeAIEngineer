@@ -3,20 +3,13 @@ from azure.search.documents import SearchClient
 from azure.core.credentials import AzureKeyCredential
 import os
 from dotenv import load_dotenv
-from typing import Optional
-
-# Try to import connection types (available in AI Foundry)
-try:
-    from promptflow.connections import AzureAISearchConnection
-except ImportError:
-    AzureAISearchConnection = None
 
 # Load environment variables from .env file
 load_dotenv()
 
 
 @tool
-def retrieve(query: str, index_name: str, top_k: int = 3, connection: Optional[AzureAISearchConnection] = None) -> str:
+def retrieve(query: str, index_name: str, top_k: int = 3) -> str:
     """
     Retrieve relevant documents from Azure AI Search index.
 
@@ -24,33 +17,26 @@ def retrieve(query: str, index_name: str, top_k: int = 3, connection: Optional[A
         query: The search query
         index_name: The name of the Azure AI Search index
         top_k: Number of documents to retrieve
-        connection: Optional Azure AI Search connection from Prompt Flow (for AI Foundry)
 
     Returns:
         A formatted string containing the retrieved documents
     """
-    # Try to get credentials from connection first (AI Foundry), then fall back to env vars
-    if connection:
-        search_api_key = connection.api_key
-        search_endpoint = connection.api_base
-    else:
-        # Get Azure AI Search credentials from environment variables
-        search_service_name = os.getenv("AZURE_SEARCH_SERVICE_NAME")
-        search_api_key = os.getenv("AZURE_SEARCH_API_KEY")
-        search_endpoint = os.getenv("AZURE_SEARCH_ENDPOINT")
+    # Get Azure AI Search credentials from environment variables
+    search_service_name = os.getenv("AZURE_SEARCH_SERVICE_NAME")
+    search_api_key = os.getenv("AZURE_SEARCH_API_KEY")
+    search_endpoint = os.getenv("AZURE_SEARCH_ENDPOINT")
 
-        # If endpoint is not set, construct it from service name
-        if not search_endpoint and search_service_name:
-            search_endpoint = (
-                f"https://{search_service_name}.search.windows.net"
-            )
+    # If endpoint is not set, construct it from service name
+    if not search_endpoint and search_service_name:
+        search_endpoint = (
+            f"https://{search_service_name}.search.windows.net"
+        )
 
     if not search_endpoint or not search_api_key:
         raise ValueError(
             "Azure AI Search credentials not found. Please set "
             "AZURE_SEARCH_ENDPOINT (or AZURE_SEARCH_SERVICE_NAME) and "
-            "AZURE_SEARCH_API_KEY in your .env file or environment variables, "
-            "or provide a connection in AI Foundry."
+            "AZURE_SEARCH_API_KEY in your .env file or environment variables."
         )
 
     # Initialize the search client
