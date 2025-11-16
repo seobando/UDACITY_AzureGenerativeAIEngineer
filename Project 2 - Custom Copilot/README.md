@@ -23,7 +23,7 @@ This project focuses on the **Outlander Gear Co. (Product/Retail)** track:
 
 - Upload and management of data in AI Studio: The copilot responds using data grounded from a data source, and evaluations are created against the data source.
 
-
+![End point test](./images/endpoint_test.png)
 
 - AI Search index using the uploaded data: The copilot application uses an AI Search Service evidenced by functionality or screenshots
 
@@ -58,6 +58,8 @@ from promptflow.connections import CustomConnection
 3. Evaluation of the Copilot
 
 - The automated evaluation of the copilot is performed with a structured dataset: JSONL or CSV evaluation dataset provided and used in AI Studio for evaluation. Metrics and results from the automated evaluation are included in the submission.
+
+
 
 - Manual prompt evaluation is conducted: Evidence/screenshots of manually added questions and responses with feedback provided.
 
