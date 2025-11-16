@@ -59,6 +59,14 @@ from promptflow.connections import CustomConnection
 
 - The automated evaluation of the copilot is performed with a structured dataset: JSONL or CSV evaluation dataset provided and used in AI Studio for evaluation. Metrics and results from the automated evaluation are included in the submission.
 
+The JSONL is under: 
+
+```
+evaluation/llm_evaluation.jsonl
+```
+
+The results were:
+
 
 
 - Manual prompt evaluation is conducted: Evidence/screenshots of manually added questions and responses with feedback provided.
