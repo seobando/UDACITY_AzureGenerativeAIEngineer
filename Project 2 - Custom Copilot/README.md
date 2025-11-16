@@ -65,6 +65,10 @@ The JSONL is under:
 evaluation/llm_evaluation.jsonl
 ```
 
+The config evaluation was:
+
+![Evaluation config](images/evaluation_config.png)
+
 The results were:
 
 
