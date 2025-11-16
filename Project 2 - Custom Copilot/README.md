@@ -92,20 +92,19 @@ The project is organized as follows:
 ```
 Project 2 - Custom Copilot/
 ├── outlander-copilot/          # Main Prompt Flow application
-│   ├── flow.dag.yaml          # Flow definition (nodes, inputs, outputs)
-│   ├── chat.jinja2            # Chat prompt template
-│   ├── tools/                  # Custom Python tools
-│   │   ├── chat.py            # Chat tool (Azure OpenAI integration)
-│   │   └── retrieve.py        # Retrieval tool (Azure AI Search)
-│   ├── azure_openai.yaml      # Azure OpenAI connection config
-│   ├── openai.yaml            # OpenAI connection config
-│   └── azure_ai_search.yaml   # Azure AI Search connection config
+│   ├── flow.dag.yaml           # Flow definition (nodes, inputs, outputs)
+│   ├── chat.jinja2             # Chat prompt template
+│   ├── retrieve.py             # Retrieval tool (Azure AI Search)
+│   ├── azure_openai.yaml       # Azure OpenAI connection config
+│   ├── openai.yaml             # OpenAI connection config
+│   └── azure_ai_search.yaml    # Azure AI Search connection config
+│   ├── requirements.txt        # Python dependencies
 ├── data/                       # Data files for indexing
 ├── evaluation/                 # Evaluation datasets and results
-│   ├── llm_evaluation_qa.json # Evaluation questions
-│   └── llm_evaluation_qa.md   # Evaluation documentation
-├── requirements.txt           # Python dependencies
-└── README.md                  # This file
+│   ├── llm_evaluation.jsonl    # Evaluation questions and answers
+│   └── llm_evaluation.md       # Evaluation documentation
+│   └── llm_responses.md        # Prompt flow runs of the 20 questions 
+└── README.md                   # This file
 ```
 
 ### Prerequisites
