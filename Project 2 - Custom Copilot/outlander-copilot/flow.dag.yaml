@@ -39,4 +39,5 @@ nodes:
     temperature: 0.7
     question: ${inputs.question}
     context: ${retrieve.output}
-    chat_history: ${inputs.chat_history}    connection: ${connections.open_ai_connection}
+    chat_history: ${inputs.chat_history}    
+    connection: ${connections.open_ai_connection}
