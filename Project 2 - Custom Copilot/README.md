@@ -91,20 +91,27 @@ The project is organized as follows:
 
 ```
 Project 2 - Custom Copilot/
-├── outlander-copilot/          # Main Prompt Flow application
-│   ├── flow.dag.yaml           # Flow definition (nodes, inputs, outputs)
-│   ├── chat.jinja2             # Chat prompt template
-│   ├── retrieve.py             # Retrieval tool (Azure AI Search)
-│   ├── azure_openai.yaml       # Azure OpenAI connection config
-│   ├── openai.yaml             # OpenAI connection config
-│   └── azure_ai_search.yaml    # Azure AI Search connection config
-│   ├── requirements.txt        # Python dependencies
-├── data/                       # Data files for indexing
-├── evaluation/                 # Evaluation datasets and results
-│   ├── llm_evaluation.jsonl    # Evaluation questions and answers
-│   └── llm_evaluation.md       # Evaluation documentation
-│   └── llm_responses.md        # Prompt flow runs of the 20 questions 
-└── README.md                   # This file
+├── outlander-copilot/                    # Main Prompt Flow application
+│   ├── flow.dag.yaml                     # Flow definition (nodes, inputs, outputs)
+│   ├── chat.jinja2                       # Chat prompt template
+│   ├── retrieve.py                       # Retrieval tool (Azure AI Search)
+│   ├── azure_openai.yaml                 # Azure OpenAI connection config
+│   ├── openai.yaml                       # OpenAI connection config
+│   ├── requirements.txt                  # Python dependencies
+│   └── azure_ai_search.yaml              # Azure AI Search connection config
+├── images                                # Screenshots of the project
+├── evaluation/                           # Evaluation datasets and results
+│   ├── llm_evaluation.jsonl              # Evaluation questions and answers
+│   └── llm_evaluation.md                 # Evaluation documentation
+│   └── llm_responses.md                  # Prompt flow runs of the 20 questions 
+├── evaluation/                           # Evaluation datasets and results
+│   ├── llm_evaluation.jsonl              # Evaluation questions and answers
+│   └── llm_evaluation.md                 # Evaluation documentation
+│   └── llm_responses.md                  # Prompt flow runs of the 20 questions 
+├── test/                                 # Evaluation datasets and results
+│   ├── AZURE_CREDENTIALS_GUIDE.md        # Documentation of how the test_azure_open_connection works
+│   └── test_azure_openai_connection.py   # Test module for azure openai connections
+└── README.md                             # This file
 ```
 
 ### Prerequisites
