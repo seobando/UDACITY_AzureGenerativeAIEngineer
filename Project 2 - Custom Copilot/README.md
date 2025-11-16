@@ -19,7 +19,7 @@ This project focuses on the **Outlander Gear Co. (Product/Retail)** track:
 
 - AI model is deployed within the project: Screenshots or logs show the successful deployment of a base model.
 
-[success logs](images/success_logs.png)
+![Success logs](./images/success_logs.png)
 
 - Upload and management of data in AI Studio: The copilot responds using data grounded from a data source, and evaluations are created against the data source.
 
@@ -29,15 +29,15 @@ This project focuses on the **Outlander Gear Co. (Product/Retail)** track:
 
 The index was uploaded into the Azure AI Foundry:
 
-[Index](images/detail_index.png)
+![Index](images/detail_index.png)
 
 A custom connection was created to use the Index:
 
-[Custom connection](images/custom_connection.png)
+![Custom connection](images/custom_connection.png)
 
 The custom connection was defined in the flow.dag.yaml as:
 
-[Retrieve node](images/retrieve_config.png)
+![Retrieve node](images/retrieve_config.png)
 
 And was consume in the retrieve.py node using:
 
@@ -49,11 +49,11 @@ from promptflow.connections import CustomConnection
 
 - Implementation of Prompt Flow for the custom AI Copilot: Screenshots of the Prompt Flow of the copilot.
 
-[Flow Dag](images/flow_dag.png)
+![Flow Dag](images/flow_dag.png)
 
 - The Copilot is tested with relevant questions: Screenshots show accurate responses to evaluation questions.
 
-[Conversation](images/conversation.png)
+![Conversation](images/conversation.png)
 
 3. Evaluation of the Copilot
 
@@ -61,13 +61,13 @@ from promptflow.connections import CustomConnection
 
 - Manual prompt evaluation is conducted: Evidence/screenshots of manually added questions and responses with feedback provided.
 
-[Manual prompt](images/manual_test.png)
+![Manual prompt](images/manual_test.png)
 
 4. Deployment
 
 - The copilot is deployed successfully and verified (Screenshots of the deployment confirmation with endpoint information included).
 
-[Deployed endpoing](images/deployed_endpoint.png)
+![Deployed endpoint](images/deployed_endpoint.png)
 
 ## 🔧 Set Up
 
