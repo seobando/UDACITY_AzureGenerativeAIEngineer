@@ -210,3 +210,4 @@ For more details on the flow implementation, see `outlander-copilot/README.md`.
 # Resources
 
 [How to integrate Prompt Flow in VSC](https://www.youtube.com/watch?v=M6gXchnxHik&t=472s)
+[Full Prompt Flow series](https://www.youtube.com/watch?v=K50ZhIIKkV4&list=PLyqwquIuSMZqZHRGm1m-MHsH00jQzGT-D&index=1)
