@@ -3,13 +3,14 @@ from azure.search.documents import SearchClient
 from azure.core.credentials import AzureKeyCredential
 import os
 from dotenv import load_dotenv
+from typing import Optional
 
 # Load environment variables from .env file
 load_dotenv()
 
 
 @tool
-def retrieve(query: str, index_name: str, top_k: int = 3) -> str:
+def retrieve(query: str, index_name: str, top_k: int = 3, connection: Optional[object] = None) -> str:
     """
     Retrieve relevant documents from Azure AI Search index.
 
@@ -17,14 +18,29 @@ def retrieve(query: str, index_name: str, top_k: int = 3) -> str:
         query: The search query
         index_name: The name of the Azure AI Search index
         top_k: Number of documents to retrieve
+        connection: Optional Azure AI Search connection object
 
     Returns:
         A formatted string containing the retrieved documents
     """
-    # Get Azure AI Search credentials from environment variables
-    search_service_name = os.getenv("AZURE_SEARCH_SERVICE_NAME")
-    search_api_key = os.getenv("AZURE_SEARCH_API_KEY")
-    search_endpoint = os.getenv("AZURE_SEARCH_ENDPOINT")
+    # Try to get credentials from connection first, then fallback to environment variables
+    if connection:
+        # Connection object has api_key and api_base attributes
+        search_api_key = getattr(connection, 'api_key', None)
+        search_endpoint = getattr(connection, 'api_base', None) or getattr(connection, 'endpoint', None)
+        search_service_name = None
+    else:
+        search_api_key = None
+        search_endpoint = None
+        search_service_name = None
+
+    # Fallback to environment variables if connection not provided or missing values
+    if not search_api_key:
+        search_api_key = os.getenv("AZURE_SEARCH_API_KEY")
+    if not search_endpoint:
+        search_endpoint = os.getenv("AZURE_SEARCH_ENDPOINT")
+    if not search_service_name:
+        search_service_name = os.getenv("AZURE_SEARCH_SERVICE_NAME")
 
     # If endpoint is not set, construct it from service name
     if not search_endpoint and search_service_name:
@@ -34,7 +50,7 @@ def retrieve(query: str, index_name: str, top_k: int = 3) -> str:
 
     if not search_endpoint or not search_api_key:
         raise ValueError(
-            "Azure AI Search credentials not found. Please set "
+            "Azure AI Search credentials not found. Please set up a connection or set "
             "AZURE_SEARCH_ENDPOINT (or AZURE_SEARCH_SERVICE_NAME) and "
             "AZURE_SEARCH_API_KEY in your .env file or environment variables."
         )

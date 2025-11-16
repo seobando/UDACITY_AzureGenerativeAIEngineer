@@ -26,6 +26,7 @@ nodes:
     query: ${inputs.question}
     index_name: lemon-nose-qdgwrgv6d5
     top_k: 3
+    connection: ${connections.azure_ai_search_connection}
 - name: chat
   type: python
   source:
@@ -38,4 +39,4 @@ nodes:
     temperature: 0.7
     question: ${inputs.question}
     context: ${retrieve.output}
-    chat_history: ${inputs.chat_history}
+    chat_history: ${inputs.chat_history}    connection: ${connections.open_ai_connection}

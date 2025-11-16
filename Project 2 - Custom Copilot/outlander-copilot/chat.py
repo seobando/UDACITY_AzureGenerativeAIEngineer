@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
+from typing import Optional
 
 # Load environment variables from .env file
 load_dotenv()
@@ -23,7 +24,8 @@ def chat(
     chat_history: list,
     deployment_name: str = "gpt-4o",
     max_tokens: int = 512,
-    temperature: float = 0.7
+    temperature: float = 0.7,
+    connection: Optional[object] = None
 ) -> str:
     """
     Generate a chat response using Azure OpenAI with retrieved context.
@@ -35,14 +37,29 @@ def chat(
         deployment_name: Azure OpenAI deployment name (default: gpt-4o)
         max_tokens: Maximum tokens in response (default: 512)
         temperature: Sampling temperature (default: 0.7)
+        connection: Optional Azure OpenAI connection object
 
     Returns:
         The assistant's response as a string
     """
-    # Get Azure OpenAI credentials from environment variables
-    api_key = os.getenv("AZURE_OPENAI_API_KEY")
-    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-02-15-preview")
+    # Try to get credentials from connection first, then fallback to environment variables
+    if connection:
+        # Connection object has api_key and api_base attributes
+        api_key = getattr(connection, 'api_key', None)
+        endpoint = getattr(connection, 'api_base', None) or getattr(connection, 'endpoint', None)
+        api_version = getattr(connection, 'api_version', None) or "2024-02-15-preview"
+    else:
+        api_key = None
+        endpoint = None
+        api_version = "2024-02-15-preview"
+
+    # Fallback to environment variables if connection not provided or missing values
+    if not api_key:
+        api_key = os.getenv("AZURE_OPENAI_API_KEY")
+    if not endpoint:
+        endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    if not api_version or api_version == "2024-02-15-preview":
+        api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-02-15-preview")
 
     # Optional: Allow deployment name to be overridden by env var
     if not deployment_name:
@@ -50,7 +67,7 @@ def chat(
 
     if not api_key or not endpoint:
         raise ValueError(
-            "Azure OpenAI credentials not found. Please set "
+            "Azure OpenAI credentials not found. Please set up a connection or set "
             "AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT in your .env file "
             "or environment variables."
         )
