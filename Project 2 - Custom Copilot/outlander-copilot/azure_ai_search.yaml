@@ -1,0 +1,6 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureAISearchConnection.schema.json
+name: azure_ai_search_connection
+type: azure_ai_search
+api_key: "<user-input>"
+api_base: "<user-input>"
+

@@ -16,6 +16,15 @@ outputs:
     reference: ${chat.output}
     is_chat_output: true
 nodes:
+- name: retrieve
+  type: python
+  source:
+    type: code
+    path: tools/retrieve.py
+  inputs:
+    query: ${inputs.question}
+    index_name: frank-sun-njkjxv7g9g
+    top_k: 3
 - name: chat
   type: llm
   source:
@@ -23,9 +32,9 @@ nodes:
     path: chat.jinja2
   inputs:
     deployment_name: gpt-4o
-    max_tokens: 256
+    max_tokens: 512
     temperature: 0.7
-    chat_history: ${inputs.chat_history}
     question: ${inputs.question}
+    context: ${retrieve.output}
   connection: outlander-copilot-resource_aoai
-  api: chat
+  api: completion
