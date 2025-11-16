@@ -19,6 +19,7 @@ azure-mgmt-core==1.6.0
 azure-search-documents==11.4.0
 azure-monitor-opentelemetry==1.8.2
 azure-monitor-opentelemetry-exporter==1.0.0b45
+azure-search-documents==11.6.0
 azure-storage-blob==12.27.1
 azure-storage-file-datalake==12.22.0
 azure-storage-file-share==12.23.1

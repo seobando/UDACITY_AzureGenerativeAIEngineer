@@ -21,6 +21,30 @@
         }
       },
       "source": "chat.jinja2"
+    },
+    "tools/retrieve.py": {
+      "type": "python",
+      "inputs": {
+        "query": {
+          "type": [
+            "string"
+          ]
+        },
+        "index_name": {
+          "type": [
+            "string"
+          ]
+        },
+        "top_k": {
+          "type": [
+            "int"
+          ],
+          "default": "3"
+        }
+      },
+      "description": "Retrieve relevant documents from Azure AI Search index.\n\nArgs:\n    query: The search query\n    index_name: The name of the Azure AI Search index\n    top_k: Number of documents to retrieve\n\nReturns:\n    A formatted string containing the retrieved documents",
+      "source": "tools/retrieve.py",
+      "function": "retrieve"
     }
   }
 }

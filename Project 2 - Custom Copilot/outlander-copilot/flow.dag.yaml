@@ -9,7 +9,8 @@ inputs:
   question:
     type: string
     is_chat_input: true
-    default: Tell me a Joke
+    default: What is the price of the TrailMaster X4 Tent and what brand
+      manufactures it?
 outputs:
   answer:
     type: string
@@ -21,20 +22,21 @@ nodes:
   source:
     type: code
     path: tools/retrieve.py
+    function: retrieve
   inputs:
     query: ${inputs.question}
-    index_name: frank-sun-njkjxv7g9g
+    index_name: lemon-nose-qdgwrgv6d5
     top_k: 3
 - name: chat
-  type: llm
+  type: python
   source:
     type: code
-    path: chat.jinja2
+    path: tools/chat.py
+    function: chat
   inputs:
     deployment_name: gpt-4o
     max_tokens: 512
     temperature: 0.7
     question: ${inputs.question}
     context: ${retrieve.output}
-  connection: outlander-copilot-resource_aoai
-  api: completion
+    chat_history: ${inputs.chat_history}
