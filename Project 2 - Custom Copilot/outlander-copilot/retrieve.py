@@ -1,4 +1,4 @@
-from promptflow import tool
+from promptflow.core import tool
 from azure.search.documents import SearchClient
 from azure.core.credentials import AzureKeyCredential
 import os

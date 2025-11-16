@@ -1,4 +1,4 @@
-from promptflow import tool
+from promptflow.core import tool
 from openai import AzureOpenAI
 import os
 from dotenv import load_dotenv
