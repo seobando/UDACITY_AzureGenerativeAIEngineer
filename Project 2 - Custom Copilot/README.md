@@ -59,7 +59,21 @@ from promptflow.connections import CustomConnection
 
 - The automated evaluation of the copilot is performed with a structured dataset: JSONL or CSV evaluation dataset provided and used in AI Studio for evaluation. Metrics and results from the automated evaluation are included in the submission.
 
-The JSONL is under: 
+The copilot runs with 20 questions:
+
+![Copilot runs](images/copilot_runs.png)
+
+The copilot results:
+
+![Copilot results](images/copilot_results.png)
+
+The JSONL for the copilot results:
+
+```
+evaluation/llm_results.jsonl
+```
+
+The Evaluation JSONL is under: 
 
 ```
 evaluation/llm_evaluation.jsonl
@@ -71,7 +85,7 @@ The config evaluation was:
 
 The results were:
 
-
+![Evaluation results](images/evaluations_results.png)
 
 - Manual prompt evaluation is conducted: Evidence/screenshots of manually added questions and responses with feedback provided.
 
@@ -107,7 +121,7 @@ Project 2 - Custom Copilot/
 ├── evaluation/                           # Evaluation datasets and results
 │   ├── llm_evaluation.jsonl              # Evaluation questions and answers
 │   └── llm_evaluation.md                 # Evaluation documentation
-│   └── llm_responses.md                  # Prompt flow runs of the 20 questions 
+│   └── llm_results.md                  # Prompt flow runs of the 20 questions 
 ├── test/                                 # Evaluation datasets and results
 │   ├── AZURE_CREDENTIALS_GUIDE.md        # Documentation of how the test_azure_open_connection works
 │   └── test_azure_openai_connection.py   # Test module for azure openai connections
