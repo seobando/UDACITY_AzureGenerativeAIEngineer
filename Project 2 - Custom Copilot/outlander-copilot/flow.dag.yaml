@@ -4,12 +4,14 @@ environment:
 inputs:
   chat_history:
     type: list
-    is_chat_history: true
     default: []
+    is_chat_input: false
+    is_chat_history: true
   question:
     type: string
+    default: What is the price of the TrailMaster X4 Tent and what brand
+      manufactures it?
     is_chat_input: true
-    default: What is the price of the TrailMaster X4 Tent and what brand manufactures it?
 outputs:
   answer:
     type: string
@@ -21,23 +23,26 @@ nodes:
   source:
     type: code
     path: retrieve.py
-    function: retrieve
   inputs:
+    index_name: frank-sun-njkjxv7g9g
     query: ${inputs.question}
-    index_name: lemon-nose-qdgwrgv6d5
     top_k: 3
-    connection: ${connections.azure_ai_search_connection}
+  use_variants: false
 - name: chat
-  type: python
+  type: llm
   source:
     type: code
-    path: chat.py
-    function: chat
+    path: chat.jinja2
   inputs:
     deployment_name: gpt-4o
-    max_tokens: 512
     temperature: 0.7
-    question: ${inputs.question}
+    top_p: 1
+    max_tokens: 512
+    chat_history: ${inputs.chat_history}
     context: ${retrieve.output}
-    chat_history: ${inputs.chat_history}    
-    connection: ${connections.open_ai_connection}
+    question: ${inputs.question}
+  provider: AzureOpenAI
+  connection: stude-mi0gqu0x-eastus2_aoai
+  api: chat
+  module: promptflow.tools.aoai
+  use_variants: false

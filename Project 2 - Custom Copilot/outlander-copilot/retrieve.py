@@ -1,16 +1,16 @@
 from promptflow.core import tool
+from promptflow.connections import CustomConnection 
 from azure.search.documents import SearchClient
 from azure.core.credentials import AzureKeyCredential
 import os
 from dotenv import load_dotenv
-from typing import Optional
 
 # Load environment variables from .env file
 load_dotenv()
 
 
 @tool
-def retrieve(query: str, index_name: str, top_k: int = 3, connection: Optional[object] = None) -> str:
+def retrieve(query: str, index_name: str, top_k: int = 3, connection: CustomConnection = None) -> str:
     """
     Retrieve relevant documents from Azure AI Search index.
 
@@ -26,8 +26,12 @@ def retrieve(query: str, index_name: str, top_k: int = 3, connection: Optional[o
     # Try to get credentials from connection first, then fallback to environment variables
     if connection:
         # Connection object has api_key and api_base attributes
-        search_api_key = getattr(connection, 'api_key', None)
-        search_endpoint = getattr(connection, 'api_base', None) or getattr(connection, 'endpoint', None)
+        search_api_key = connection.secrets.get('api_key')
+        search_endpoint = connection.configs.get('api_base')
+
+        if not search_endpoint:
+            search_endpoint = connection.configs.get('endpoint')
+
         search_service_name = None
     else:
         search_api_key = None

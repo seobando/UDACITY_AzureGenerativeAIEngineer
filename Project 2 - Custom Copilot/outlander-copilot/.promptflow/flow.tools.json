@@ -105,9 +105,14 @@
             "int"
           ],
           "default": "3"
+        },
+        "connection": {
+          "type": [
+            "CustomConnection"
+          ]
         }
       },
-      "description": "Retrieve relevant documents from Azure AI Search index.\n\nArgs:\n    query: The search query\n    index_name: The name of the Azure AI Search index\n    top_k: Number of documents to retrieve\n\nReturns:\n    A formatted string containing the retrieved documents",
+      "description": "Retrieve relevant documents from Azure AI Search index.\n\nArgs:\n    query: The search query\n    index_name: The name of the Azure AI Search index\n    top_k: Number of documents to retrieve\n    connection: Optional Azure AI Search connection object\n\nReturns:\n    A formatted string containing the retrieved documents",
       "source": "retrieve.py",
       "function": "retrieve"
     },
