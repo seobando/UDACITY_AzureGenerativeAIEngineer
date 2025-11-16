@@ -21,7 +21,7 @@ nodes:
   type: python
   source:
     type: code
-    path: tools/retrieve.py
+    path: retrieve.py
     function: retrieve
   inputs:
     query: ${inputs.question}
@@ -33,7 +33,7 @@ nodes:
   type: python
   source:
     type: code
-    path: tools/chat.py
+    path: chat.py
     function: chat
   inputs:
     deployment_name: gpt-4o
