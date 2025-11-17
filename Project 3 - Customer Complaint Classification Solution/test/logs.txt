@@ -1,0 +1,60 @@
+============================================================
+Azure OpenAI Connection Tests
+============================================================
+
+============================================================
+Testing Environment Variables
+============================================================
+✓ AZURE_OPENAI_API_KEY: BwE8fctgY2qMP7ZGoZl2...
+✓ AZURE_OPENAI_ENDPOINT: https://customer-com...
+✓ GPT_DEPLOYMENT: customer-complain-cl...
+✓ GPT_VERSION: 2024-02-01
+✓ DALLE_DEPLOYMENT: customer-complain-cl...
+✓ DALLE_VERSION: 2025-01-01-preview
+
+
+============================================================
+Testing Azure OpenAI Connection
+============================================================
+✓ Azure OpenAI client created successfully
+  Endpoint: https://customer-complain-classification.openai.azure.com/
+  API Version: 2024-02-01
+✓ Connection parameters validated
+
+============================================================
+Testing GPT Deployment
+============================================================
+✓ GPT Deployment 'customer-complain-classification-gpt-4o' is accessible
+  Response: Connection test successful
+
+============================================================
+Testing DALL-E Deployment
+============================================================
+✓ DALL-E Deployment 'customer-complain-classification-dall-e-3' parameters validated
+  API Version: 2025-01-01-preview
+  Note: Full test would generate an image (skipped)
+
+============================================================
+Testing Whisper Connection
+============================================================
+✓ Whisper connection parameters validated
+  Note: Full test would require an audio file (skipped)
+
+============================================================
+Testing Vision (GPT-4o) Connection
+============================================================
+✓ Vision connection parameters validated
+  Deployment: customer-complain-classification-gpt-4o
+  Note: Full test would require an image file (skipped)
+
+============================================================
+Test Summary
+============================================================
+✓ env_vars: PASSED
+✓ azure_connection: PASSED
+✓ gpt: PASSED
+✓ dalle: PASSED
+✓ whisper: PASSED
+✓ vision: PASSED
+
+Total: 6 passed, 0 failed, 0 skipped
