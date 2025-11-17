@@ -3,7 +3,7 @@
 # Import functions from other modules
 from whisper import transcribe_audio
 from dalle import generate_image
-from vision import describe_image
+from vision import describe_image, annotate_image
 from gpt import classify_with_gpt
 import os
 import json
@@ -49,10 +49,10 @@ def main(audio_file_path="audio/complaint.mp3"):
     image_description = describe_image(image_path)
     print(f"Image description: {image_description}\n")
 
-    # Step 5: Annotate the reported issue in the image
-    # The annotation is included in the image description from the vision model
+    # Step 5: Annotate the reported issue in the image with bounding boxes
     print("Step 5: Annotating the reported issue in the image...")
-    print("Annotation completed as part of image description.\n")
+    annotated_image_path = annotate_image(image_path=image_path)
+    print(f"Annotated image saved at: {annotated_image_path}\n")
 
     # Step 6: Classify the complaint based on the image description
     print("Step 6: Classifying the complaint...")
@@ -64,6 +64,7 @@ def main(audio_file_path="audio/complaint.mp3"):
         "transcription": transcription,
         "prompt": prompt,
         "image_path": image_path,
+        "annotated_image_path": annotated_image_path,
         "image_description": image_description,
         "classification": classification
     }
@@ -79,6 +80,7 @@ def main(audio_file_path="audio/complaint.mp3"):
     print("  - transcription.txt")
     print("  - image_prompt.txt")
     print("  - generated_image.png")
+    print("  - annotated_image.png")
     print("  - image_description.txt")
     print("  - classification.txt")
     print("  - results_summary.json")

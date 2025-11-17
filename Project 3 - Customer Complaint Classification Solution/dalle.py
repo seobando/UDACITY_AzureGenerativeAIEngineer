@@ -27,11 +27,20 @@ def generate_image(prompt, model=None, size="1024x1024",
     Returns:
         str: The path to the generated image.
     """
-    # Create a prompt to represent the customer complaint.
-    # The prompt is passed as a parameter, but we can enhance it
+    # Create a detailed, specific prompt to ensure accurate visual representation
+    # Extract key defect details from the complaint
     enhanced_prompt = (
-        f"A clear, detailed illustration showing: {prompt}. "
-        "The image should clearly depict the customer complaint issue."
+        f"Create a clear, detailed, realistic illustration showing the exact "
+        f"customer complaint: {prompt}. "
+        f"The image must accurately and clearly show: "
+        f"1. The specific product or item mentioned in the complaint, "
+        f"2. The exact type of damage, defect, or issue described "
+        f"(e.g., cracked screen, broken part, wrong size, etc.), "
+        f"3. The precise location and appearance of the defect, "
+        f"4. The condition of the product as described. "
+        f"Make the defect highly visible and prominent in the image. "
+        f"Use a clean background to focus attention on the product and defect. "
+        f"The image should be photorealistic and clearly show the complaint issue."
     )
 
     # Use deployment name from environment if not provided
