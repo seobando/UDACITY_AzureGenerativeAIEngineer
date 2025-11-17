@@ -16,7 +16,8 @@ def generate_image(prompt, model=None, size="1024x1024",
     Generates an image based on a prompt using Azure OpenAI's DALL-E model.
 
     Args:
-        prompt (str): The prompt describing the customer complaint to visualize.
+        prompt (str): The prompt describing the customer complaint
+            to visualize.
         model (str, optional): DALL-E deployment name.
             If not provided, uses DALLE_DEPLOYMENT from environment.
         size (str): Image size (default: "1024x1024").
@@ -33,9 +34,6 @@ def generate_image(prompt, model=None, size="1024x1024",
         "The image should clearly depict the customer complaint issue."
     )
 
-    # Create Azure OpenAI client
-    client = create_azure_openai_client()
-
     # Use deployment name from environment if not provided
     if not model:
         model = os.getenv('DALLE_DEPLOYMENT')
@@ -44,6 +42,17 @@ def generate_image(prompt, model=None, size="1024x1024",
                 "DALLE_DEPLOYMENT environment variable not set. "
                 "Please set it in your .env file or provide model parameter."
             )
+
+    # Use DALL-E-specific API version if available
+    # Default to 2024-02-01 if not set (based on endpoint URL)
+    dalle_api_version = (
+        os.getenv('DALLE_VERSION') or
+        os.getenv('GPT_VERSION') or
+        '2024-02-01'  # Default API version for DALL-E
+    )
+
+    # Create Azure OpenAI client with DALL-E API version
+    client = create_azure_openai_client(api_version=dalle_api_version)
 
     # Use utility function to generate the image
     image_url = utils_generate_image(
@@ -59,7 +68,7 @@ def generate_image(prompt, model=None, size="1024x1024",
     os.makedirs("output", exist_ok=True)
     image_path = "output/generated_image.png"
 
-    img_response = requests.get(image_url)
+    img_response = requests.get(image_url, timeout=30)
     if img_response.status_code == 200:
         with open(image_path, "wb") as f:
             f.write(img_response.content)
@@ -70,7 +79,14 @@ def generate_image(prompt, model=None, size="1024x1024",
 
     return image_path
 
+
 # Example Usage (for testing purposes, remove/comment when deploying):
-# if __name__ == "__main__":
-#     image_path = generate_image()
-#     print(f"Generated image saved at: {image_path}")
+if __name__ == "__main__":
+    test_prompt = (
+        "Customer complaint: Hello. I'm calling to complain about a "
+        "product I purchased. I ordered a smartphone last week. But when "
+        "it arrived, the screen was cracked and the device wouldn't turn "
+        "on. This is completely unacceptable. I need a refund immediately."
+    )
+    test_image_path = generate_image(test_prompt)
+    print(f"Generated image saved at: {test_image_path}")

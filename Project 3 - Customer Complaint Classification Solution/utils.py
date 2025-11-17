@@ -22,14 +22,23 @@ def create_openai_client(api_version, api_key, api_endpoint):
     return client
 
 
-def create_azure_openai_client():
+def create_azure_openai_client(api_version=None):
     """
     Create an Azure OpenAI client from environment variables.
     Reads from AZURE_OPENAI_API_KEY, AZURE_OPENAI_ENDPOINT, and GPT_VERSION.
+
+    Args:
+        api_version (str, optional): API version to use. If not provided,
+            uses GPT_VERSION from environment or default.
+
+    Returns:
+        AzureOpenAI: Configured Azure OpenAI client.
     """
     api_key = os.getenv('AZURE_OPENAI_API_KEY')
     endpoint = os.getenv('AZURE_OPENAI_ENDPOINT')
-    api_version = os.getenv('GPT_VERSION', '2024-02-15-preview')
+
+    if not api_version:
+        api_version = os.getenv('GPT_VERSION', '2024-02-15-preview')
 
     if not api_key:
         raise ValueError(
@@ -45,6 +54,76 @@ def create_azure_openai_client():
     # Clean up the API key and endpoint (remove quotes if present)
     api_key = api_key.strip().strip('"').strip("'")
     endpoint = endpoint.strip().strip('"').strip("'")
+
+    # Ensure endpoint doesn't have trailing /openai or /deployments paths
+    # The SDK will add those automatically
+    if '/openai' in endpoint:
+        endpoint = endpoint.split('/openai')[0]
+    if '/deployments' in endpoint:
+        endpoint = endpoint.split('/deployments')[0]
+    # Remove trailing slash
+    endpoint = endpoint.rstrip('/')
+
+    client = AzureOpenAI(
+        api_key=api_key,
+        api_version=api_version,
+        azure_endpoint=endpoint
+    )
+    return client
+
+
+def create_whisper_openai_client(api_version=None):
+    """
+    Create an Azure OpenAI client specifically for Whisper.
+    Uses WHISPER_ENDPOINT and WHISPER_API_KEY if available,
+    otherwise falls back to main AZURE_OPENAI_ENDPOINT and
+    AZURE_OPENAI_API_KEY.
+
+    Args:
+        api_version (str, optional): API version to use. If not provided,
+            uses WHISPER_VERSION or GPT_VERSION from environment or default.
+
+    Returns:
+        AzureOpenAI: Configured Azure OpenAI client for Whisper.
+    """
+    # Try Whisper-specific endpoint and API key first
+    whisper_api_key = os.getenv('WHISPER_API_KEY')
+    whisper_endpoint = os.getenv('WHISPER_ENDPOINT')
+
+    # Fall back to main endpoint/key if Whisper-specific ones aren't set
+    api_key = whisper_api_key or os.getenv('AZURE_OPENAI_API_KEY')
+    endpoint = whisper_endpoint or os.getenv('AZURE_OPENAI_ENDPOINT')
+
+    if not api_version:
+        api_version = (
+            os.getenv('WHISPER_VERSION') or
+            os.getenv('GPT_VERSION') or
+            '2024-06-01'  # Default API version for Whisper
+        )
+
+    if not api_key:
+        raise ValueError(
+            "API key not set. Please set either WHISPER_API_KEY or "
+            "AZURE_OPENAI_API_KEY in your .env file."
+        )
+    if not endpoint:
+        raise ValueError(
+            "Endpoint not set. Please set either WHISPER_ENDPOINT or "
+            "AZURE_OPENAI_ENDPOINT in your .env file."
+        )
+
+    # Clean up the API key and endpoint (remove quotes if present)
+    api_key = api_key.strip().strip('"').strip("'")
+    endpoint = endpoint.strip().strip('"').strip("'")
+
+    # Ensure endpoint doesn't have trailing /openai or /deployments paths
+    # The SDK will add those automatically
+    if '/openai' in endpoint:
+        endpoint = endpoint.split('/openai')[0]
+    if '/deployments' in endpoint:
+        endpoint = endpoint.split('/deployments')[0]
+    # Remove trailing slash
+    endpoint = endpoint.rstrip('/')
 
     client = AzureOpenAI(
         api_key=api_key,
@@ -106,18 +185,42 @@ def describe_online_image(client, image_url, deployment_name, prompt):
 def generate_image(client, prompt, model, size,
                    quality,
                    style):
-    result = client.images.generate(
-        model=model,
-        prompt=prompt,
-        size=size,
-        quality=quality,
-        style=style
-    )
+    try:
+        result = client.images.generate(
+            model=model,
+            prompt=prompt,
+            size=size,
+            quality=quality,
+            style=style
+        )
 
-    json_response = json.loads(result.model_dump_json())
-    image_url = json_response["data"][0]["url"]
+        json_response = json.loads(result.model_dump_json())
+        image_url = json_response["data"][0]["url"]
 
-    return image_url
+        return image_url
+    except Exception as e:
+        error_msg = str(e)
+        if ("getaddrinfo failed" in error_msg or
+                "Connection error" in error_msg):
+            # Get endpoint from environment for better error message
+            endpoint = os.getenv('AZURE_OPENAI_ENDPOINT', 'not set')
+            api_version = getattr(client, '_api_version', 'unknown')
+            raise ConnectionError(
+                f"Failed to connect to Azure OpenAI endpoint for DALL-E. "
+                f"Please verify:\n"
+                f"1. AZURE_OPENAI_ENDPOINT is correct in your .env file\n"
+                f"   Current value: {endpoint}\n"
+                f"2. The endpoint URL is accessible from your network\n"
+                f"3. The endpoint format is correct "
+                f"(should be base URL without /openai)\n"
+                f"   Example: https://your-resource.openai.azure.com\n"
+                f"4. DALLE_VERSION is set correctly "
+                f"(if different from GPT_VERSION)\n"
+                f"   API Version being used: {api_version}\n"
+                f"5. Model deployment name: {model}\n"
+                f"Original error: {error_msg}"
+            ) from e
+        raise
 
 
 def chat(gpt_client, deployment_name, prompt, system_message=None,
